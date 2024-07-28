@@ -11,14 +11,22 @@
 <body>
 <nav th:replace="~{common/template::navbar}"></nav>
 <div class="container">
-    <form method="post" th:object="${blog}">
+    <form method="post" th:object="${blogDTO}">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" th:field="*{title}"/>
+            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red; font-style: italic"></p>
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
             <input type="text" class="form-control" id="content" th:field="*{content}"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="category">The Loai</label>
+            <select th:field="*{category}" class="form-select" id="category">
+                <option th:each="category: ${categorys}" th:text="${category.name}" th:value="${category.id}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}" style="color: red; font-style: italic"></p>
         </div>
         <button type="submit" class="btn btn-primary">Thêm mới</button>
     </form>

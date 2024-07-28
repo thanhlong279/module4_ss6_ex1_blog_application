@@ -15,4 +15,7 @@ public interface IBlogService {
     void update(Blog blog);
 
     void delete(Long id);
+
+    interface ICategorySevice {
+    }
 }
